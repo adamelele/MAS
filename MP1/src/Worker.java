@@ -1,18 +1,22 @@
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Worker implements Serializable {
 
-    List<Worker> extent = new ArrayList<>();
+    private static List<Worker> extent = new ArrayList<>();
 
     // Atrybut powtarzalny
     private String[] names;
 
-    private String surrname;
+    private String surname;
 
     // Atrybut złożony
     private LocalDate birthDate;
@@ -28,9 +32,9 @@ public class Worker implements Serializable {
 
     private double baseSalary;
 
-    public Worker(String[] names, String surrname, LocalDate birthDate, double baseSalary){
+    public Worker(String[] names, String surname, LocalDate birthDate, double baseSalary){
         this.names = names;
-        this.surrname = surrname;
+        this.surname = surname;
         this.birthDate = birthDate;
         this.age = countAge(birthDate);
         this.baseSalary = baseSalary;
@@ -38,9 +42,10 @@ public class Worker implements Serializable {
 
     }
 
-    public Worker(String[] names, String surrname, LocalDate birthDate, double baseSalary, double bonusPercentage){
+    // przeciążenie
+    public Worker(String[] names, String surname, LocalDate birthDate, double baseSalary, double bonusPercentage){
         this.names = names;
-        this.surrname = surrname;
+        this.surname = surname;
         this.birthDate = birthDate;
         this.age = countAge(birthDate);
         this.bonusPercentage = bonusPercentage;
@@ -56,14 +61,35 @@ public class Worker implements Serializable {
     @Override
     public String toString() {
         return  "names=" + Arrays.toString(names) +
-                ", surrname='" + surrname + '\'' +
+                ", surname='" + surname + '\'' +
                 ", birthDate=" + birthDate +
                 ", age=" + age +
                 ", salary="+ baseSalary +
                 ", bonusPercentage=" + bonusPercentage;
     }
 
-    private void showExtension(){
+    private static void showExtension(){
         System.out.println(extent);
+    }
+
+    public static void writeExtent(ObjectOutputStream stream){
+        try{
+            stream.writeObject(extent);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void readExtent(ObjectInputStream stream){
+        try{
+            extent = (ArrayList<Worker>)stream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //Metoda klasowa
+    public static void print(){
+        extent.forEach(System.out::println);
     }
 }
