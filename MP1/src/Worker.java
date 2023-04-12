@@ -7,7 +7,6 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Worker implements Serializable {
 
@@ -28,7 +27,7 @@ public class Worker implements Serializable {
     private int age;
 
     // Atrybut opcjonalny
-    private double bonusPercentage;
+    private Double bonusPercentage;
 
     private double baseSalary;
 
@@ -89,7 +88,15 @@ public class Worker implements Serializable {
     }
 
     //Metoda klasowa
-    public static void print(){
+    public static void printExtents(){
         extent.forEach(System.out::println);
+    }
+
+    private double getFinalSalary(double baseSalary){
+        return baseSalary;
+    }
+
+    private double getFinalSalary(double baseSalary, double bonusPercentage){
+        return baseSalary * bonusPercentage + baseSalary;
     }
 }

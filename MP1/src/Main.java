@@ -1,8 +1,5 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -24,7 +21,7 @@ public class Main {
 
             switch (input) {
                 case 1 -> setWorkers();
-                case 2 -> Worker.print();
+                case 2 -> Worker.printExtents();
                 case 3 -> serializeObjects();
                 case 4 -> deserializeObjects();
                 case 5 -> isExit = true;
