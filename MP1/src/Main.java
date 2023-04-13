@@ -28,13 +28,15 @@ public class Main {
                 default -> System.out.println("Niepoprawny numer operacji");
             }
         }
-
-
     }
 
     private static void setWorkers(){
-        Worker worker1 = new Worker(new String[]{"Adam", "Michal"} , "Przykladowy", LocalDate.of(2000,2,23), 5820.60);
-        Worker worker2 = new Worker(new String[]{"Kacper"}, "Example", LocalDate.of(1998,8,30), 4910.20, 12);
+        Worker worker1 = new Worker(new String[]{"Adam", "Michal"} , "Przykladowy",
+                LocalDate.of(2000,2,23),
+                new Adress("Poland", "Warsaw", "Plac Defilad", 1) , 5820.60);
+        Worker worker2 = new Worker(new String[]{"Kacper"}, "Example",
+                LocalDate.of(1998,8,30)
+                ,new Adress("Poland", "Warsaw", "Koszykowa", 86, 212) ,4910.20);
     }
 
     private static void serializeObjects(){

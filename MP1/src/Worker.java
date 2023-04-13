@@ -17,7 +17,6 @@ public class Worker implements Serializable {
 
     private String surname;
 
-    // Atrybut złożony
     private LocalDate birthDate;
 
     // Atrybut klasowy
@@ -25,32 +24,67 @@ public class Worker implements Serializable {
 
     // Atrybut pochodny
     private int age;
+    // Atrybut złożony
+    private Adress adress;
 
-    // Atrybut opcjonalny
-    private Double bonusPercentage;
+    private double salary;
+    public String[] getNames() {
+        return names;
+    }
 
-    private double baseSalary;
+    public void setNames(String[] names) {
+        this.names = names;
+    }
 
-    public Worker(String[] names, String surname, LocalDate birthDate, double baseSalary){
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Adress getAdress() {
+        return adress;
+    }
+
+    public void setAdress(Adress adress) {
+        this.adress = adress;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+    public void setSalary(double salary){
+        this.salary = salary;
+    }
+    public Worker(String[] names, String surname, LocalDate birthDate, Adress adress, double salary){
         this.names = names;
         this.surname = surname;
         this.birthDate = birthDate;
         this.age = countAge(birthDate);
-        this.baseSalary = baseSalary;
+        this.adress = adress;
+        this.salary = salary;
         extent.add(this);
 
     }
 
-    // przeciążenie
-    public Worker(String[] names, String surname, LocalDate birthDate, double baseSalary, double bonusPercentage){
-        this.names = names;
-        this.surname = surname;
-        this.birthDate = birthDate;
-        this.age = countAge(birthDate);
-        this.bonusPercentage = bonusPercentage;
-        this.baseSalary = baseSalary;
-        extent.add(this);
-    }
 
     private int countAge(LocalDate birthDate){
         return Period.between(birthDate, LocalDate.now()).getYears();
@@ -63,13 +97,10 @@ public class Worker implements Serializable {
                 ", surname='" + surname + '\'' +
                 ", birthDate=" + birthDate +
                 ", age=" + age +
-                ", salary="+ baseSalary +
-                ", bonusPercentage=" + bonusPercentage;
+                ",\nadress=" + adress +
+                ", salary="+ salary ;
     }
 
-    private static void showExtension(){
-        System.out.println(extent);
-    }
 
     public static void writeExtent(ObjectOutputStream stream){
         try{
@@ -92,11 +123,11 @@ public class Worker implements Serializable {
         extent.forEach(System.out::println);
     }
 
-    private double getFinalSalary(double baseSalary){
-        return baseSalary;
+    private double getBruttoSalary(){
+        return salary * 0.9;
     }
-
-    private double getFinalSalary(double baseSalary, double bonusPercentage){
-        return baseSalary * bonusPercentage + baseSalary;
+    //przeciążenie
+    private double getBruttoSalary( double bonusPercentage){
+        return (salary * bonusPercentage + salary) * 0.9;
     }
 }
