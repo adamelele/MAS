@@ -5,17 +5,28 @@ public class Company {
 
     private String name;
 
-    private List<Employee> employees = new ArrayList<>();
+    private List<Position> positions = new ArrayList<>();
 
     public Company(String name){
         this.name = name;
     }
 
-    public void addEmployee(Employee employee){
-        if (!employees.contains(employee)){
-            employees.add(employee);
+    public boolean linkPosition(Position position){
+        if (positions.contains(position)){
+            return false;
         }
+        positions.add(position);
+        return true;
     }
+
+    public boolean unlinkPosition(Position position){
+        if (!positions.contains(position)){
+            return false;
+        }
+        positions.remove(position);
+        return true;
+    }
+
 
 
 }
