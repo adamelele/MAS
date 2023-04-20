@@ -14,6 +14,10 @@ public class Client {
         nextId++;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     public void addOrder(Order order) {
         if (!orders.contains(order)) {
             orders.add(order);

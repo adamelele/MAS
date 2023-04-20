@@ -15,6 +15,13 @@ public class Product {
         order.addProduct(this);
     }
 
+    public Product(String name, double price, int amount) {
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+        this.sum = countSum();
+    }
+
     private double countSum(){
         return price * amount;
     }

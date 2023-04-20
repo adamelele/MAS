@@ -40,4 +40,8 @@ public class Order {
         this.employee.addOrder(this);
     }
 
+    public void deleteproduct(Product product){
+        products.remove(product);
+    }
+
 }

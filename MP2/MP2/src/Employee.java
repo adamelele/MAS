@@ -46,4 +46,12 @@ public class Employee {
     public void addOrder(Order order){
         processedOrders.put(order.getOrderNumber(), order);
     }
+
+    public void deleteOrder(Order order){
+        processedOrders.remove(order.getOrderNumber());
+    }
+
+    public void deleteOrder(int orderNumber){
+        processedOrders.remove(orderNumber);
+    }
 }
