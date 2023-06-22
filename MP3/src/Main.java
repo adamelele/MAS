@@ -1,9 +1,11 @@
+import Dynamic.Employee;
+import Dynamic.Person;
+import Dynamic.Student;
 import Multiple_inheritance.Amphibious;
 import Multiple_inheritance.Boat;
 import Overlapping.Order;
 import Overlapping.PersonOverlapped;
 import Overlapping.PersonType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,12 @@ public class Main {
 
 
         System.out.println(a.getNumberOfDoors());
+
+        Student dynamicStudent = new Student("School name", 1200,1400,"Adam", "Exmaple");
+        System.out.println(dynamicStudent);
+        Employee dynamicEmployee = new Employee(dynamicStudent, "job title", 5000);
+        System.out.println(dynamicEmployee);
+
 
     }
 }
