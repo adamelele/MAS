@@ -1,14 +1,15 @@
 package entity;
 
-import jakarta.persistence.*;
-
-import java.util.Objects;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Wishlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "customer_id")
+    @jakarta.persistence.Column(name = "customer_id")
     private int customerId;
 
     public int getCustomerId() {
@@ -23,12 +24,16 @@ public class Wishlist {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Wishlist wishlist = (Wishlist) o;
-        return customerId == wishlist.customerId;
+
+        if (customerId != wishlist.customerId) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerId);
+        return customerId;
     }
 }

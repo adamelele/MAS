@@ -1,18 +1,20 @@
 package entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-@Entity
-@Table(name = "wishlist_product", schema = "public", catalog = "postgres")
-@IdClass(WishlistProductPK.class)
-public class WishlistProduct {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+import java.io.Serializable;
+
+public class WishlistProductPK implements Serializable {
     @Column(name = "product_id")
-    private int productId;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int productId;
     @Column(name = "customer_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
 
     public int getProductId() {
@@ -36,7 +38,7 @@ public class WishlistProduct {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        WishlistProduct that = (WishlistProduct) o;
+        WishlistProductPK that = (WishlistProductPK) o;
 
         if (productId != that.productId) return false;
         if (customerId != that.customerId) return false;

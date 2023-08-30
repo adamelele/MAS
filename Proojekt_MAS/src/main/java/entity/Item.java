@@ -1,13 +1,15 @@
 package entity;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "item", schema = "public")
 public class Item {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id")
+    private int id;
     @Basic
     @Column(name = "quantity")
     private int quantity;
@@ -15,11 +17,19 @@ public class Item {
     @Column(name = "product_id")
     private int productId;
     @Basic
-    @Column(name = "cart_customer_id")
-    private int cartCustomerId;
+    @Column(name = "cart_id")
+    private Integer cartId;
     @Basic
-    @Column(name = "order_ordernumber")
-    private Integer orderOrdernumber;
+    @Column(name = "order_number")
+    private Integer orderNumber;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -37,32 +47,53 @@ public class Item {
         this.productId = productId;
     }
 
-    public int getCartCustomerId() {
-        return cartCustomerId;
+    public Integer getCartId() {
+        return cartId;
     }
 
-    public void setCartCustomerId(int cartCustomerId) {
-        this.cartCustomerId = cartCustomerId;
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
     }
 
-    public Integer getOrderOrdernumber() {
-        return orderOrdernumber;
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
 
-    public void setOrderOrdernumber(Integer orderOrdernumber) {
-        this.orderOrdernumber = orderOrdernumber;
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Item item = (Item) o;
-        return quantity == item.quantity && productId == item.productId && cartCustomerId == item.cartCustomerId && Objects.equals(orderOrdernumber, item.orderOrdernumber);
+
+        if (id != item.id) return false;
+        if (quantity != item.quantity) return false;
+        if (productId != item.productId) return false;
+        if (cartId != item.cartId) return false;
+        if (orderNumber != item.orderNumber) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(quantity, productId, cartCustomerId, orderOrdernumber);
+        int result = id;
+        result = 31 * result + quantity;
+        result = 31 * result + productId;
+        result = 31 * result + cartId;
+        result = 31 * result + orderNumber;
+        return result;
     }
 }

@@ -2,8 +2,6 @@ package entity;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,12 +43,21 @@ public class Order {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Order order = (Order) o;
-        return ordernumber == order.ordernumber && shipmentId == order.shipmentId && customerId == order.customerId;
+
+        if (ordernumber != order.ordernumber) return false;
+        if (shipmentId != order.shipmentId) return false;
+        if (customerId != order.customerId) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ordernumber, shipmentId, customerId);
+        int result = ordernumber;
+        result = 31 * result + shipmentId;
+        result = 31 * result + customerId;
+        return result;
     }
 }

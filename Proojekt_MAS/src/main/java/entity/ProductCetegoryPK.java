@@ -1,15 +1,21 @@
 package entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-@Entity
-@Table(name = "product_cetegory", schema = "public", catalog = "postgres")
-@IdClass(ProductCetegoryPK.class)
-public class ProductCetegory {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+import java.io.Serializable;
+
+public class ProductCetegoryPK implements Serializable {
     @Column(name = "product_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
+    @Column(name = "category_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int categoryId;
 
     public int getProductId() {
         return productId;
@@ -18,11 +24,6 @@ public class ProductCetegory {
     public void setProductId(int productId) {
         this.productId = productId;
     }
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "category_id")
-    private int categoryId;
 
     public int getCategoryId() {
         return categoryId;
@@ -37,7 +38,7 @@ public class ProductCetegory {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ProductCetegory that = (ProductCetegory) o;
+        ProductCetegoryPK that = (ProductCetegoryPK) o;
 
         if (productId != that.productId) return false;
         if (categoryId != that.categoryId) return false;

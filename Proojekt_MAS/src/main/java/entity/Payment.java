@@ -2,26 +2,12 @@ package entity;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @jakarta.persistence.Column(name = "id")
     private int id;
-    @Basic
-    @Column(name = "amount")
-    private Object amount;
-    @Basic
-    @Column(name = "method")
-    private String method;
-    @Basic
-    @Column(name = "status")
-    private String status;
-    @Basic
-    @Column(name = "order_ordernumber")
-    private int orderOrdernumber;
 
     public int getId() {
         return id;
@@ -31,6 +17,10 @@ public class Payment {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "amount")
+    private Object amount;
+
     public Object getAmount() {
         return amount;
     }
@@ -38,6 +28,10 @@ public class Payment {
     public void setAmount(Object amount) {
         this.amount = amount;
     }
+
+    @Basic
+    @Column(name = "method")
+    private String method;
 
     public String getMethod() {
         return method;
@@ -47,6 +41,10 @@ public class Payment {
         this.method = method;
     }
 
+    @Basic
+    @Column(name = "status")
+    private String status;
+
     public String getStatus() {
         return status;
     }
@@ -55,24 +53,41 @@ public class Payment {
         this.status = status;
     }
 
-    public int getOrderOrdernumber() {
-        return orderOrdernumber;
+    @Basic
+    @Column(name = "ordernumber")
+    private int ordernumber;
+
+    public int getOrdernumber() {
+        return ordernumber;
     }
 
-    public void setOrderOrdernumber(int orderOrdernumber) {
-        this.orderOrdernumber = orderOrdernumber;
+    public void setOrdernumber(int ordernumber) {
+        this.ordernumber = ordernumber;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Payment payment = (Payment) o;
-        return id == payment.id && orderOrdernumber == payment.orderOrdernumber && Objects.equals(amount, payment.amount) && Objects.equals(method, payment.method) && Objects.equals(status, payment.status);
+
+        if (id != payment.id) return false;
+        if (ordernumber != payment.ordernumber) return false;
+        if (amount != null ? !amount.equals(payment.amount) : payment.amount != null) return false;
+        if (method != null ? !method.equals(payment.method) : payment.method != null) return false;
+        if (status != null ? !status.equals(payment.status) : payment.status != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, amount, method, status, orderOrdernumber);
+        int result = id;
+        result = 31 * result + (amount != null ? amount.hashCode() : 0);
+        result = 31 * result + (method != null ? method.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + ordernumber;
+        return result;
     }
 }

@@ -2,17 +2,12 @@ package entity;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @jakarta.persistence.Column(name = "id")
     private int id;
-    @Basic
-    @Column(name = "name")
-    private String name;
 
     public int getId() {
         return id;
@@ -21,6 +16,10 @@ public class Category {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Basic
+    @Column(name = "name")
+    private String name;
 
     public String getName() {
         return name;
@@ -34,12 +33,19 @@ public class Category {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Category category = (Category) o;
-        return id == category.id && Objects.equals(name, category.name);
+
+        if (id != category.id) return false;
+        if (name != null ? !name.equals(category.name) : category.name != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }

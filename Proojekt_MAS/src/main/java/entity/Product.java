@@ -3,7 +3,6 @@ package entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Entity
 public class Product {
@@ -90,12 +89,30 @@ public class Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Product product = (Product) o;
-        return id == product.id && quantityinstock == product.quantityinstock && Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(discount, product.discount) && Objects.equals(averagerating, product.averagerating) && Objects.equals(description, product.description);
+
+        if (id != product.id) return false;
+        if (quantityinstock != product.quantityinstock) return false;
+        if (name != null ? !name.equals(product.name) : product.name != null) return false;
+        if (price != null ? !price.equals(product.price) : product.price != null) return false;
+        if (discount != null ? !discount.equals(product.discount) : product.discount != null) return false;
+        if (averagerating != null ? !averagerating.equals(product.averagerating) : product.averagerating != null)
+            return false;
+        if (description != null ? !description.equals(product.description) : product.description != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, quantityinstock, discount, averagerating, description);
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + quantityinstock;
+        result = 31 * result + (discount != null ? discount.hashCode() : 0);
+        result = 31 * result + (averagerating != null ? averagerating.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        return result;
     }
 }
