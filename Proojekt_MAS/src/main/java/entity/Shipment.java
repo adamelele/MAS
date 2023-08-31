@@ -2,12 +2,26 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 public class Shipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "id")
+    @Column(name = "id")
     private int id;
+    @Basic
+    @Column(name = "method")
+    private String method;
+    @Basic
+    @Column(name = "price")
+    private Object price;
+    @Basic
+    @Column(name = "etimatedtime")
+    private int etimatedtime;
+    @Basic
+    @Column(name = "shippingdetails_id")
+    private int shippingdetailsId;
 
     public int getId() {
         return id;
@@ -17,10 +31,6 @@ public class Shipment {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "method")
-    private String method;
-
     public String getMethod() {
         return method;
     }
@@ -29,21 +39,17 @@ public class Shipment {
         this.method = method;
     }
 
-    @Basic
-    @Column(name = "price")
-    private Object price;
-
     public Object getPrice() {
         return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public void setPrice(Object price) {
         this.price = price;
     }
-
-    @Basic
-    @Column(name = "etimatedtime")
-    private int etimatedtime;
 
     public int getEtimatedtime() {
         return etimatedtime;
@@ -52,10 +58,6 @@ public class Shipment {
     public void setEtimatedtime(int etimatedtime) {
         this.etimatedtime = etimatedtime;
     }
-
-    @Basic
-    @Column(name = "shippingdetails_id")
-    private int shippingdetailsId;
 
     public int getShippingdetailsId() {
         return shippingdetailsId;

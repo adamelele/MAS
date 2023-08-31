@@ -2,12 +2,26 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "id")
+    @Column(name = "id")
     private int id;
+    @Basic
+    @Column(name = "amount")
+    private Object amount;
+    @Basic
+    @Column(name = "method")
+    private String method;
+    @Basic
+    @Column(name = "status")
+    private String status;
+    @Basic
+    @Column(name = "ordernumber")
+    private int ordernumber;
 
     public int getId() {
         return id;
@@ -17,21 +31,17 @@ public class Payment {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "amount")
-    private Object amount;
-
     public Object getAmount() {
         return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public void setAmount(Object amount) {
         this.amount = amount;
     }
-
-    @Basic
-    @Column(name = "method")
-    private String method;
 
     public String getMethod() {
         return method;
@@ -41,10 +51,6 @@ public class Payment {
         this.method = method;
     }
 
-    @Basic
-    @Column(name = "status")
-    private String status;
-
     public String getStatus() {
         return status;
     }
@@ -52,10 +58,6 @@ public class Payment {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    @Basic
-    @Column(name = "ordernumber")
-    private int ordernumber;
 
     public int getOrdernumber() {
         return ordernumber;

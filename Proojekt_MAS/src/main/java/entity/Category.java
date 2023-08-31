@@ -6,8 +6,11 @@ import jakarta.persistence.*;
 public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "id")
+    @Column(name = "id")
     private int id;
+    @Basic
+    @Column(name = "name")
+    private String name;
 
     public int getId() {
         return id;
@@ -16,10 +19,6 @@ public class Category {
     public void setId(int id) {
         this.id = id;
     }
-
-    @Basic
-    @Column(name = "name")
-    private String name;
 
     public String getName() {
         return name;

@@ -6,8 +6,35 @@ import jakarta.persistence.*;
 public class Shippingdetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "id")
+    @Column(name = "id")
     private int id;
+    @Basic
+    @Column(name = "name")
+    private String name;
+    @Basic
+    @Column(name = "surname")
+    private String surname;
+    @Basic
+    @Column(name = "phonenumber")
+    private String phonenumber;
+    @Basic
+    @Column(name = "street")
+    private String street;
+    @Basic
+    @Column(name = "housenumber")
+    private Integer housenumber;
+    @Basic
+    @Column(name = "zipcode")
+    private String zipcode;
+    @Basic
+    @Column(name = "country")
+    private String country;
+    @Basic
+    @Column(name = "email")
+    private String email;
+    @Basic
+    @Column(name = "customer_id")
+    private Integer customerId;
 
     public int getId() {
         return id;
@@ -17,10 +44,6 @@ public class Shippingdetails {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
-    private String name;
-
     public String getName() {
         return name;
     }
@@ -28,10 +51,6 @@ public class Shippingdetails {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Basic
-    @Column(name = "surname")
-    private String surname;
 
     public String getSurname() {
         return surname;
@@ -41,10 +60,6 @@ public class Shippingdetails {
         this.surname = surname;
     }
 
-    @Basic
-    @Column(name = "phonenumber")
-    private String phonenumber;
-
     public String getPhonenumber() {
         return phonenumber;
     }
@@ -52,10 +67,6 @@ public class Shippingdetails {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
-
-    @Basic
-    @Column(name = "street")
-    private String street;
 
     public String getStreet() {
         return street;
@@ -65,10 +76,6 @@ public class Shippingdetails {
         this.street = street;
     }
 
-    @Basic
-    @Column(name = "housenumber")
-    private Integer housenumber;
-
     public Integer getHousenumber() {
         return housenumber;
     }
@@ -76,10 +83,6 @@ public class Shippingdetails {
     public void setHousenumber(Integer housenumber) {
         this.housenumber = housenumber;
     }
-
-    @Basic
-    @Column(name = "zipcode")
-    private String zipcode;
 
     public String getZipcode() {
         return zipcode;
@@ -89,10 +92,6 @@ public class Shippingdetails {
         this.zipcode = zipcode;
     }
 
-    @Basic
-    @Column(name = "country")
-    private String country;
-
     public String getCountry() {
         return country;
     }
@@ -100,10 +99,6 @@ public class Shippingdetails {
     public void setCountry(String country) {
         this.country = country;
     }
-
-    @Basic
-    @Column(name = "email")
-    private String email;
 
     public String getEmail() {
         return email;
@@ -113,15 +108,11 @@ public class Shippingdetails {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "customer_id")
-    private int customerId;
-
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 

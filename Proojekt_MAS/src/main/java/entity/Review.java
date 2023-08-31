@@ -8,8 +8,20 @@ import java.math.BigDecimal;
 public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "id")
+    @Column(name = "id")
     private int id;
+    @Basic
+    @Column(name = "product_id")
+    private int productId;
+    @Basic
+    @Column(name = "username")
+    private String username;
+    @Basic
+    @Column(name = "rating")
+    private BigDecimal rating;
+    @Basic
+    @Column(name = "comment")
+    private String comment;
 
     public int getId() {
         return id;
@@ -19,10 +31,6 @@ public class Review {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "product_id")
-    private int productId;
-
     public int getProductId() {
         return productId;
     }
@@ -30,10 +38,6 @@ public class Review {
     public void setProductId(int productId) {
         this.productId = productId;
     }
-
-    @Basic
-    @Column(name = "username")
-    private String username;
 
     public String getUsername() {
         return username;
@@ -43,10 +47,6 @@ public class Review {
         this.username = username;
     }
 
-    @Basic
-    @Column(name = "rating")
-    private BigDecimal rating;
-
     public BigDecimal getRating() {
         return rating;
     }
@@ -54,10 +54,6 @@ public class Review {
     public void setRating(BigDecimal rating) {
         this.rating = rating;
     }
-
-    @Basic
-    @Column(name = "comment")
-    private String comment;
 
     public String getComment() {
         return comment;

@@ -15,7 +15,7 @@ public class Product {
     private String name;
     @Basic
     @Column(name = "price")
-    private Object price;
+    private BigDecimal price;
     @Basic
     @Column(name = "quantityinstock")
     private int quantityinstock;
@@ -28,6 +28,9 @@ public class Product {
     @Basic
     @Column(name = "description")
     private String description;
+    @Basic
+    @Column(name = "category_id")
+    private int categoryId;
 
     public int getId() {
         return id;
@@ -45,11 +48,11 @@ public class Product {
         this.name = name;
     }
 
-    public Object getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Object price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -114,5 +117,13 @@ public class Product {
         result = 31 * result + (averagerating != null ? averagerating.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 }
