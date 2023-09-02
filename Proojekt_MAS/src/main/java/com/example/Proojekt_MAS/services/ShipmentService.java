@@ -22,11 +22,8 @@ public class ShipmentService {
         return shipmentRepository.findById(id);
     }
 
-    public int save(int shippingDetailsId, int shipmentMethodId) {
-        Shipment shipment = new Shipment();
+    public int save(Shipment shipment) {
         shipment.setId(shipmentRepository.findAll().stream().mapToInt(Shipment::getId).max().orElse(0)+1);
-        shipment.setShipmentmethodId(shipmentMethodId);
-        shipment.setShippingdetailsId(shippingDetailsId);
         shipmentRepository.save(shipment);
         return shipment.getId();
     }

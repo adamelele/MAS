@@ -37,13 +37,17 @@ public class PaymentService {
         return paymentMethodRepository.findAll();
     }
 
+    public void savePayment(Payment payment){
+        paymentRepository.save(payment);
+    }
+
     public void savePayment(Payment payment, List<ItemDTO> items) {
         payment.setAmount(getAmount(payment.getOrdernumber(), items));
         payment.setId(paymentRepository.findAll().stream().mapToInt(Payment::getId).max().orElse(0)+1);
         Orders order = orderService.getOrderByOrderNumber(payment.getOrdernumber());
         payment.setPaymentmethodId(shipmentMethodService.getShipmentMethodById(Objects.requireNonNull(shipmentService
                 .getShipmentById(order.getShipmentId()).orElse(null)).getShipmentmethodId()).getId());
-        payment.setStatus("Completed");
+        payment.setStatus("Pending");
         paymentRepository.save(payment);
 
         for (ItemDTO item :items) {

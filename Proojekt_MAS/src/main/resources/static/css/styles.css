@@ -1767,6 +1767,13 @@ progress {
   vertical-align: bottom;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
 .table-group-divider {
   border-top: 2px solid currentcolor;
 }

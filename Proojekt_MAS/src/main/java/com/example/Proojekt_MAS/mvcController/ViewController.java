@@ -73,4 +73,9 @@ public class ViewController {
     public String getResultPage(){
         return "result";
     }
+
+    @GetMapping("payment/failed")
+    public String getFailedPage(){
+        return "fail";
+    }
 }
