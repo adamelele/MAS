@@ -1,17 +1,20 @@
 package entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
 
+import java.util.Objects;
+
+@Getter
 @Entity
 public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "customer_id")
+    @jakarta.persistence.Column(name = "customer_id")
     private int customerId;
-
-    public int getCustomerId() {
-        return customerId;
-    }
 
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
@@ -21,16 +24,12 @@ public class Cart {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Cart cart = (Cart) o;
-
-        if (customerId != cart.customerId) return false;
-
-        return true;
+        return customerId == cart.customerId;
     }
 
     @Override
     public int hashCode() {
-        return customerId;
+        return Objects.hash(customerId);
     }
 }

@@ -2,6 +2,8 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "wishlist_product", schema = "public", catalog = "postgres")
 @IdClass(WishlistProductPK.class)
@@ -35,19 +37,12 @@ public class WishlistProduct {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         WishlistProduct that = (WishlistProduct) o;
-
-        if (productId != that.productId) return false;
-        if (customerId != that.customerId) return false;
-
-        return true;
+        return productId == that.productId && customerId == that.customerId;
     }
 
     @Override
     public int hashCode() {
-        int result = productId;
-        result = 31 * result + customerId;
-        return result;
+        return Objects.hash(productId, customerId);
     }
 }

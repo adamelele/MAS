@@ -38,6 +38,8 @@ public class ItemService {
                 .productName(product.getName())
                 .productPrice(product.getPrice())
                 .category(category.getName())
+                .price(BigDecimal.valueOf(product.getPrice().doubleValue()*item.getQuantity()))
+                .quantity(item.getQuantity())
                 .productPhotoUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.firstbenefits.org%2Fworkers-compensation-wholesale-and-retail-trade%2Fplaceholder%2F&psig=AOvVaw1K6LP8miHBcmjdRAdm5emp&ust=1693561306893000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCICY0dLNhoEDFQAAAAAdAAAAABAJ")
                 .build();
     }

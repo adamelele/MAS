@@ -13,4 +13,7 @@ public class ItemDTO {
     private BigDecimal productPrice;
     private String productPhotoUrl;
     private String category;
+    private int quantity;
+    private BigDecimal price;
+
 }

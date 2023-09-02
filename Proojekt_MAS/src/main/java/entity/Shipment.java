@@ -1,67 +1,32 @@
 package entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
-import java.math.BigDecimal;
+import java.util.Objects;
 
+@Getter
 @Entity
 public class Shipment {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @jakarta.persistence.Column(name = "id")
     private int id;
-    @Basic
-    @Column(name = "method")
-    private String method;
-    @Basic
-    @Column(name = "price")
-    private Object price;
-    @Basic
-    @Column(name = "etimatedtime")
-    private int etimatedtime;
-    @Basic
-    @Column(name = "shippingdetails_id")
-    private int shippingdetailsId;
-
-    public int getId() {
-        return id;
-    }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getMethod() {
-        return method;
+    @Basic
+    @Column(name = "shipmentmethod_id")
+    private int shipmentmethodId;
+
+    public void setShipmentmethodId(int shipmentmethodId) {
+        this.shipmentmethodId = shipmentmethodId;
     }
 
-    public void setMethod(String method) {
-        this.method = method;
-    }
-
-    public Object getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public void setPrice(Object price) {
-        this.price = price;
-    }
-
-    public int getEtimatedtime() {
-        return etimatedtime;
-    }
-
-    public void setEtimatedtime(int etimatedtime) {
-        this.etimatedtime = etimatedtime;
-    }
-
-    public int getShippingdetailsId() {
-        return shippingdetailsId;
-    }
+    @Basic
+    @Column(name = "shippingdetails_id")
+    private int shippingdetailsId;
 
     public void setShippingdetailsId(int shippingdetailsId) {
         this.shippingdetailsId = shippingdetailsId;
@@ -71,25 +36,12 @@ public class Shipment {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Shipment shipment = (Shipment) o;
-
-        if (id != shipment.id) return false;
-        if (etimatedtime != shipment.etimatedtime) return false;
-        if (shippingdetailsId != shipment.shippingdetailsId) return false;
-        if (method != null ? !method.equals(shipment.method) : shipment.method != null) return false;
-        if (price != null ? !price.equals(shipment.price) : shipment.price != null) return false;
-
-        return true;
+        return id == shipment.id && shipmentmethodId == shipment.shipmentmethodId && shippingdetailsId == shipment.shippingdetailsId;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (method != null ? method.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + etimatedtime;
-        result = 31 * result + shippingdetailsId;
-        return result;
+        return Objects.hash(id, shipmentmethodId, shippingdetailsId);
     }
 }

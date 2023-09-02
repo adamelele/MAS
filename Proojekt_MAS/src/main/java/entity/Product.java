@@ -1,129 +1,89 @@
 package entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
+@Getter
 @Entity
 public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @jakarta.persistence.Column(name = "id")
     private int id;
-    @Basic
-    @Column(name = "name")
-    private String name;
-    @Basic
-    @Column(name = "price")
-    private BigDecimal price;
-    @Basic
-    @Column(name = "quantityinstock")
-    private int quantityinstock;
-    @Basic
-    @Column(name = "discount")
-    private BigDecimal discount;
-    @Basic
-    @Column(name = "averagerating")
-    private BigDecimal averagerating;
-    @Basic
-    @Column(name = "description")
-    private String description;
-    @Basic
-    @Column(name = "category_id")
-    private int categoryId;
-
-    public int getId() {
-        return id;
-    }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+    @Basic
+    @Column(name = "name")
+    private String name;
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+    @Basic
+    @Column(name = "price")
+    private BigDecimal price;
 
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public int getQuantityinstock() {
-        return quantityinstock;
-    }
+    @Basic
+    @Column(name = "quantityinstock")
+    private int quantityinstock;
 
     public void setQuantityinstock(int quantityinstock) {
         this.quantityinstock = quantityinstock;
     }
 
-    public BigDecimal getDiscount() {
-        return discount;
-    }
+    @Basic
+    @Column(name = "discount")
+    private BigDecimal discount;
 
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
     }
 
-    public BigDecimal getAveragerating() {
-        return averagerating;
-    }
+    @Basic
+    @Column(name = "averagerating")
+    private BigDecimal averagerating;
 
     public void setAveragerating(BigDecimal averagerating) {
         this.averagerating = averagerating;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    @Basic
+    @Column(name = "description")
+    private String description;
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Basic
+    @Column(name = "category_id")
+    private int categoryId;
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Product product = (Product) o;
-
-        if (id != product.id) return false;
-        if (quantityinstock != product.quantityinstock) return false;
-        if (name != null ? !name.equals(product.name) : product.name != null) return false;
-        if (price != null ? !price.equals(product.price) : product.price != null) return false;
-        if (discount != null ? !discount.equals(product.discount) : product.discount != null) return false;
-        if (averagerating != null ? !averagerating.equals(product.averagerating) : product.averagerating != null)
-            return false;
-        if (description != null ? !description.equals(product.description) : product.description != null) return false;
-
-        return true;
+        return id == product.id && quantityinstock == product.quantityinstock && categoryId == product.categoryId && Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(discount, product.discount) && Objects.equals(averagerating, product.averagerating) && Objects.equals(description, product.description);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + quantityinstock;
-        result = 31 * result + (discount != null ? discount.hashCode() : 0);
-        result = 31 * result + (averagerating != null ? averagerating.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        return result;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+        return Objects.hash(id, name, price, quantityinstock, discount, averagerating, description, categoryId);
     }
 }
