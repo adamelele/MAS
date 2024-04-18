@@ -11,4 +11,4 @@ This Mini Projects is about implementing different types of Associations
 This Mini Project is focusing on different types of inheritences
 
 ## Final Project
-This is a main Project form this lecture. The project is an implementation of few functionalities of a online shop. For this project I used PosrtgreSQL Database with Spring Boot and Hibernate to manage backend. For front end i used Thymeleaf of simplicity.
+This is a main Project form this lecture. The project is an implementation of few functionalities of a online shop based on the documentation created for this project. For this project I used PosrtgreSQL Database with Spring Boot and Hibernate to manage back-end. For front-end i used Thymeleaf of simplicity.
